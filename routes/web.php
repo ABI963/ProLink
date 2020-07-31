@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/entreprise', function () {
+    return view('entreprise');
+});
+
 Route::get('admin', function () {
     $category = Category::all();
     $specialiter = SubCategory::all();

@@ -36,6 +36,7 @@ class ProfessionalController extends Controller
         $number_tahiti = $_POST['numero_tahiti'];
         $number_phone = $_POST['phone'];
         $mail = $_POST['email'];
+        $password = $_POST['password'];
         $price = $_POST['tarif'];
         $adresse = $_POST['adresse'];
         $city = $_POST['city'];
