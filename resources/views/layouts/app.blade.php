@@ -161,7 +161,9 @@
                                     <center>
                                         <a href="{{url('home')}}">Home</a>
                                         <br>
-                                        <a href="{{url('admin')}}">Administration</a>
+                                        @if (Auth::user()->user_type_id == 1)
+                                            <a href="{{url('admin')}}">Administration</a>
+                                        @endif
                                     </center>
                                     <center>
                                         <a class="dropdown-item" href="{{ route('logout') }}"

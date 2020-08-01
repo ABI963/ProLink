@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Category;
 use App\SubCategory;
-use App\Address;
 use App\Professional;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -52,6 +53,13 @@ class HomeController extends Controller
             // $subcategory=SubCategory::all();
             // $professional=Professional::all();
 
-        return view('home',compact('category','subcategory','professional'));
+        if (Auth::user()->user_type_id == 2) {
+            # code...
+            return view('entreprise',compact('category','subcategory','professional'));
+        }else{
+            return view('home',compact('category','subcategory','professional'));
+        }
+
+
     }
 }

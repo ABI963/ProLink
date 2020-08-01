@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Address;
 use App\Category;
 use App\SubCategory;
-use App\Professional;
 
+use App\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfessionalController extends Controller
 {
@@ -68,6 +70,13 @@ class ProfessionalController extends Controller
         $professional->save();
         // $adress->professionnal_id = $professional_id;
         // $adress->save();
+
+        User::create([
+            'name' => $name_contact,
+            'email' => $mail,
+            'user_type_id' => 2,
+            'password' => Hash::make($password),
+        ]);
 
         return back();
 

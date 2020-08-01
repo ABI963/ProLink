@@ -23,20 +23,74 @@
         </div>
         <div class="col-xl ml-5 mr-5 mt-5">
             <div>
-                <button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample_id1" aria-expanded="false" aria-controls="collapseExample_id1">
-                    Mes demandes
-                </button>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Historique des services rendus
-                </button>
-                <div class="collapse" id="collapseExample_id1">
-                    <div class="card card-body">
-                        <h1>
+                <center>
+                    <p>
+                        <h3>
                             Mes demandes
-                        </h1>
-                    </div>
-                </div>
+                        </h3>
+                    </p>
+                </center>
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Identité</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>
+                                <button class="btn btn-info">
+                                    traiter
+                                </button>
+                                <br>
+                                <br>
+                                <button class="btn btn-info">
+                                    terminer
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>
+                                <button class="btn btn-info">
+                                    traiter
+                                </button>
+                                <br>
+                                <br>
+                                <button class="btn btn-info">
+                                    terminer
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>
+                                <button class="btn btn-info">
+                                    traiter
+                                </button>
+                                <br>
+                                <br>
+                                <button class="btn btn-info">
+                                    terminer
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <center>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Historique des services rendus
+                    </button>
+                </center>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,8 +106,7 @@
                         Affichages de l'historique
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+
                         </div>
                     </div>
                     </div>
