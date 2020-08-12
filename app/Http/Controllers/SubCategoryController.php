@@ -15,12 +15,12 @@ class SubCategoryController extends Controller
     public function getSubcategoriesOfCategory()
     {
         // recupere id de la sous categorie choisie
-        $categoryId=$_GET['category_id'];
-
+        $categoryId=$_GET['categoryID'];
+        // var_dump($categoryId);
         // on recupere les données dans la table subcategories selon la categorie
         $resultGetSubcategoriesOfCategory=DB::table('sub_categories')
-            ->join('categories', 'sub_categories.category_id', '=', 'categories.category_id')
-            ->select('sub_categories.category_id', 'categories.name_category', 'sub_categories.subcategory_id', 'sub_categories.name_subcategory')
+            ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+            ->select('sub_categories.category_id', 'categories.name_category', 'sub_categories.id', 'sub_categories.name_subcategory')
             ->where('sub_categories.category_id', '=', $categoryId)
             ->get();
 

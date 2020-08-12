@@ -20,9 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/entreprise', function () {
-    return view('entreprise');
-});
 
 Route::get('admin', function () {
     $category = Category::all();
@@ -44,10 +41,10 @@ Route::get('home/category','CategoryController@showCategories')->name('category'
 
 //// SUBCATEGORIES
 Route::post('create_specialiter','SubCategoryController@nwSpecialiter')->name('create_specialiter');
+Route::get('home/get_subcategory','SubCategoryController@getSubcategoriesOfCategory');
 
 //// PROFESSIONNEL
 Route::post('create_pro','ProfessionalController@nwPro')->name('create_pro');
 
-//// GET CATEGORIE
-Route::get('home/jointure','CategoryController@showCategories');
+Route::get('home/research_ajax','CategoryController@research');
 

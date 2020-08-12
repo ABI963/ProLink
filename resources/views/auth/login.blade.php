@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <style>
         body{
         background: #3399ff;
@@ -91,6 +93,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="flex-center full-height">
+        @if (Route::has('login'))
+            <div class="top-right links">
+                    <a href="{{ route('register') }}">Inscription</a>
+            </div>
+        @endif
     <div class="container">
         <div class='ripple-background'>
             <div class='circle xxlarge shade1'></div>
@@ -111,15 +119,19 @@
         <br>
         <form method="POST" action="{{ route('login') }}">
                         {{csrf_field()}}
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <div class="col-4">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
             <br>
             <br>
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            <div class="col-4">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            </div>
             <br>
             <br>
             <button type="submit" class="btn btn-primary">

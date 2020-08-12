@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
 
-    // AFFICHE LA LISTE DES CATEGORIES
-    public function showCategories()
+    // AFFICHE LA RESULTAT RECHERCHE
+    public function research()
     {
-        $subcategoryId=$_GET['subcategory_id'];
+        $subcategoryId = $_GET['subcategoryID'];
         // $categoryName=$_GET['category_name'];
 
         // on recupere les donnees de la table categories

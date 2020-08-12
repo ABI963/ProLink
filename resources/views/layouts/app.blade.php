@@ -95,27 +95,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="icon" type="image/png" href="{{ asset('../images/icons/favicon.ico') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/bootstrap/css/bootstrap.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../fonts/Linearicons-Free-v1.0.0/icon-font.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../fonts/iconic/css/material-design-iconic-font.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/animate/animate.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/css-hamburgers/hamburgers.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/animsition/css/animsition.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/select2/select2.min.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../vendor/daterangepicker/daterangepicker.css') }}">
-<!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('../css/util.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('../css/main.css') }}">
+
+
     <!-- Styles -->
     <link href="{{ asset('css/geo.css') }}" rel="stylesheet">
 </head>
@@ -144,11 +125,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">Connexion</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Inscription</a>
                                 </li>
                             @endif
                         @else
@@ -159,17 +140,17 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <center>
-                                        <a href="{{url('home')}}">Home</a>
+                                        <a href="{{url('home')}}">Accueil</a>
                                         <br>
                                         @if (Auth::user()->user_type_id == 1)
-                                            <a href="{{url('admin')}}">Administration</a>
+                                            <a href="{{url('admin')}}">Création</a>
                                         @endif
                                     </center>
                                     <center>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                            Déconnexion
                                         </a>
                                     </center>
 
@@ -217,32 +198,80 @@
 
 
             // c'est ici que je vais écrire le code JQuery de ma page
-            $('.subcategories').click(function(){
+            // $('.subcategories').click(function(){
 
-                var subcategoryID = $(this).data('rowid');
+            //     var subcategoryID = $(this).data('rowid');
 
-                generer_ajax(subcategoryID);
+            //     generer_ajax(subcategoryID);
+
+            // });
+
+            $('.category').change(function(){
+
+                var categoryID = $(this).val();
+                // alert(categoryID);
+                get_subcategory(categoryID);
+
+            });
+
+            $('.rechercher').click(function(){
+
+                var subcategoryID = $('.subcategory').val();
+                // alert(categoryID);
+                research_ajax(subcategoryID);
 
             });
 
         });
 
         //AJAX
-        function generer_ajax($subcategory_id){
+        function get_subcategory(categoryID){
 
             $.ajax({
                 type:"GET",
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url:"home/jointure",
+                url:"home/get_subcategory",
                 dataType:"json",
                 data: {
-                    'subcategory_id': $subcategory_id
+                    'categoryID': categoryID
                 },
                 'success': function(data){
+                        // alert('get_subcategory');
+                        show_subcategory(data);
+                    }
+                    ,
+                    'error': function(){
+                        alert('erreur');
+                    }
+            });
+        }
 
+        function show_subcategory(data){
+            $('.subcategory').empty();
+            for (let index = 0; index < data.length; index++) {
+                const element = data[index];
+                // alert(element.name_subcategory);
+                $('.subcategory').append('<option value="'+element.id+'">'+element.name_subcategory+'</option>');
+            }
+        }
+
+        function research_ajax(subcategoryID){
+
+            $.ajax({
+                type:"GET",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url:"home/research_ajax",
+                dataType:"json",
+                data: {
+                    'subcategoryID': subcategoryID
+                },
+                'success': function(data){
                         show_map(data);
+
                     },
                     'error': function(){
                         alert('erreur');
@@ -256,6 +285,7 @@
 
             deleteMarkers();
 
+            alert('showMap');
             // Je rajoute les marqueurs de la catégorie choisie
             // Puis
             // On parcourt l'objet villes

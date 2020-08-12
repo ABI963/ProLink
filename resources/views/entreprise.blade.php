@@ -6,7 +6,7 @@
 <br>
 <center>
     <h1 id="test" >
-        ProLink
+        Fenua ProLink
     </h1>
 </center>
 <br>
@@ -21,7 +21,7 @@
                 </div>
             </center>
         </div>
-        <div class="col-xl ml-5 mr-5 mt-5">
+        <div class="col-xl ml-5 mr-5">
             <div>
                 <center>
                     <p>
@@ -34,51 +34,57 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Identité</th>
+                            <th>Date de la demande</th>
+                            <th>Utilisateur</th>
                             <th>Description</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <td>
+                                12/09/2019
+                            </td>
+                            <td>un prénom</td>
+                            <td>
+                                la description
+                            </td>
                             <td>
                                 <button class="btn btn-info">
-                                    traiter
+                                    Traiter
                                 </button>
-                                <br>
-                                <br>
                                 <button class="btn btn-info">
-                                    terminer
+                                    Terminer
                                 </button>
                             </td>
                         </tr>
                         <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <td>
+                                12/09/2019
+                            </td>
+                            <td>un prénom</td>
+                            <td>la description</td>
                             <td>
                                 <button class="btn btn-info">
-                                    traiter
+                                    Traiter
                                 </button>
-                                <br>
-                                <br>
                                 <button class="btn btn-info">
-                                    terminer
+                                    Terminer
                                 </button>
                             </td>
                         </tr>
                         <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            <td>
+                                12/09/2019
+                            </td>
+                            <td>un prénom</td>
+                            <td>la description</td>
                             <td>
                                 <button class="btn btn-info">
-                                    traiter
+                                    Traiter
                                 </button>
-                                <br>
-                                <br>
                                 <button class="btn btn-info">
-                                    terminer
+                                    Terminer
                                 </button>
                             </td>
                         </tr>
@@ -103,7 +109,38 @@
                         </button>
                         </div>
                         <div class="modal-body">
-                        Affichages de l'historique
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Utilisateur</th>
+                                        <th>Description</th>
+                                        <th>Date du traitement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>un prénom</td>
+                                        <td>la description</td>
+                                        <td>
+                                            12/09/2019
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>un prénom</td>
+                                        <td>la description</td>
+                                        <td>
+                                            12/09/2019
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>un prénom</td>
+                                        <td>la description</td>
+                                        <td>
+                                            12/09/2019
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
 
@@ -111,8 +148,8 @@
                     </div>
                     </div>
                 </div>
-
-            </div>
+{{--
+            </div> --}}
         </div>
     </div>
 </div>
