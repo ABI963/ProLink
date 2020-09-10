@@ -16,6 +16,7 @@ class CreateProfessionalsTable extends Migration
         Schema::create('professionals', function (Blueprint $table) {
             $table->bigIncrements('professional_id');
             $table->string('name_company');
+            $table->string('img');
             $table->string('name_contact');
             $table->string('status_juridique');
             $table->string('number_rc');

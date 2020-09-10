@@ -11,6 +11,7 @@ use App\Professional;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class ProfessionalController extends Controller
 {
@@ -28,7 +29,7 @@ class ProfessionalController extends Controller
 
 
    // public function nwprofessional(Info $info, Infocategorie $infocategorie)
-   public function nwPro(Professional $professional, Address $adress)
+   public function nwPro(Request $request, Professional $professional, Address $adress)
    {
        // les variables qui permettent a l admin d enregistrer un nouveau professionel
         $name_company = $_POST['name_entreprise'];
@@ -45,14 +46,21 @@ class ProfessionalController extends Controller
         $lon = $_POST['lon'];
         $lat = $_POST['lat'];
 
-        // Subcategorie
+        //récupération ID subcategory
         $subcategory_id = $_POST['subcategory_id'];
+
+        //traitement du logo
+        $name_file = $request->file('img')->getClientOriginalName();
+        $files = $request->file('img');
+        $files->move('uploads/',$name_file);
+
 
         // Get user ID
         $user_id = Auth::user();
 
         // professional
         $professional->name_company = $name_company;
+        $professional->img = $name_file;
         $professional->name_contact = $name_contact;
         $professional->status_juridique = $status_juridique;
         $professional->number_rc = $number_rc;

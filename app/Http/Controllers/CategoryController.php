@@ -23,7 +23,7 @@ class CategoryController extends Controller
 
             ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
 
-            ->select('categories.*','sub_categories.id','professionals.*')
+            ->select('categories.*','sub_categories.*','sub_categories.id','professionals.*')
 
             ->where('professionals.subcategory_id','=', $subcategoryId)
 

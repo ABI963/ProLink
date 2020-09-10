@@ -163,7 +163,6 @@
                             <li></li>
                         @endguest
 
-
                     </ul>
                 </div>
             </div>
@@ -197,15 +196,6 @@
 
 
 
-            // c'est ici que je vais écrire le code JQuery de ma page
-            // $('.subcategories').click(function(){
-
-            //     var subcategoryID = $(this).data('rowid');
-
-            //     generer_ajax(subcategoryID);
-
-            // });
-
             $('.category').change(function(){
 
                 var categoryID = $(this).val();
@@ -218,6 +208,7 @@
 
                 var subcategoryID = $('.subcategory').val();
                 // alert(categoryID);
+                $('.listpro').empty();
                 research_ajax(subcategoryID);
 
             });
@@ -284,8 +275,9 @@
             var subcategory = data;
 
             deleteMarkers();
+            search_initMap();
 
-            alert('showMap');
+            // alert('showMap');
             // Je rajoute les marqueurs de la catégorie choisie
             // Puis
             // On parcourt l'objet villes
@@ -296,13 +288,148 @@
                     position: {
                         lat: parseFloat(subcategory[subcategories].lat),
                         lng: parseFloat(subcategory[subcategories].lon)},
-                    title: subcategory[subcategories].category_name,
+                    title: subcategory[subcategories].name_company,
                     map: map
                 });
                 // marker.setAnimation(google.maps.Animation.DROP);
                 markers.push(marker);
 
+                //list entreprise
+                $('.listpro').append('<tr><th scope="row">'+subcategory[subcategories].city+'</th><td>'+subcategory[subcategories].number_phone+'</td><td>'+subcategory[subcategories].name_company+'</td><td><button class="btn btn-light" type="button" data-toggle="collapse" data-target="#collapseExample_id'+subcategory[subcategories].professional_id+'" aria-expanded="false" aria-controls="collapseExample_id1">fiche entreprise</button></td></tr>');
+                var img = subcategory[subcategories].img;
+                //fiche entreprise
+                $('.listpro').append(
+                    '<tr>'
+                        +'<td colspan="4">'
+                            +'<div class="collapse" id="collapseExample_id'+subcategory[subcategories].professional_id+'">'
+                                +'<div class="card card-body">'
+                                    +'<center>'
+                                        +'<h6>'
+                                            +'fiche entreprise !'
+                                        +'</h6>'
+                                    +'</center>'
+                                    +'<br>'
+                                    +'<div class="row">'
+                                        +'<table id="fiche_entreprise" class="col-12">'
+                                            +'<tbody>'
+                                                +'<tr>'
+                                                    +'<td>catégorie'
+                                                        +'<br><b>'
+                                                            +subcategory[subcategories].name_category
+                                                    +'</b></td>'
+                                                    +'<td>spécialité'
+                                                        +'<br><b>'
+                                                            +subcategory[subcategories].name_subcategory
+                                                    +'</b></td>'
+
+                                                    +'<td colspan="2">'
+                                                        +'<div style="vertical-align: middle ;">'
+                                                            +'<img src="uploads/'+img+'" style="width:40%; height:40%; border-radius: 100px;" alt="logo">'
+                                                        +'</div>'
+                                                    +'</td>'
+                                                +'</tr>'
+                                                +'<tr>'
+                                                    +'<td>cout/tarif'
+                                                        +'<br><b>'
+                                                            +subcategory[subcategories].price
+                                                    +'</b></td>'
+                                                    +'<td>disponibilité'
+
+                                                    +'</td>'
+                                                +'</tr>'
+                                            +'</tbody>'
+                                        +'</table>'
+                                    +'</div>'
+                                    +'<br>'
+                                    +'<div class="row">'
+                                        +'<div class="col-12">'
+                                            +'<div class="card">'
+                                                +'<div class="card-body">'
+                                                    +'<h5 class="card-title">'
+                                                        +'<center>'
+                                                            +'<h4>Prendre RDV'
+
+                                                            +'</h4>'
+                                                            +'<input type="checkbox" name="" id="">'
+                                                        +'</center>'
+                                                    +'</h5>'
+                                                    +'<center>'
+                                                        +'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">URGENT'
+                                                        +'</button>'
+                                                    +'</center>'
+                                                    +'<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">'
+                                                    +'<div class="modal-dialog" role="document">'
+                                                        +'<div class="modal-content">'
+                                                        +'<div class="modal-header">'
+                                                            +'<h5 class="modal-title" id="exampleModalLabel">'
+                                                                +'URGENT !'
+                                                            +'</h5>'
+                                                            +'<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
+                                                            +'<span aria-hidden="true">&times;'
+
+                                                            +'</span>'
+                                                            +'</button>'
+                                                        +'</div>'
+                                                        +'<div class="modal-body">'
+                                                            +'...'
+                                                        +'</div>'
+                                                        +'<div class="modal-footer">'
+                                                            +'<button type="button" class="btn btn-info">'
+                                                                +'Ennvoyer'
+                                                            +'</button>'
+                                                        +'</div>'
+                                                        +'</div>'
+                                                    +'</div>'
+                                                    +'</div>'
+
+                                                    +'<br>'
+                                                    +'<p class="card-text">'
+                                                        +'<center><input type="date" name="" id=""></center>'
+                                                        +'<br>'
+                                                        +'<center>'
+                                                            +'<div class="file-field">'
+                                                                +'<div class="d-flex justify-content-center">'
+                                                                +'<div class="btn btn-mdb-color btn-rounded float-left">'
+                                                                    +'<span>Importer une photo'
+
+                                                                    +'</span>'
+                                                                    +'<br>'
+                                                                    +'<input type="file">'
+                                                                +'</div>'
+                                                                +'</div>'
+                                                                +'<div class="z-depth-1-half mb-2">'
+                                                                +'<img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" class="img-fluid" alt="example placeholder" width=300>'
+                                                                +'</div>'
+                                                            +'</div>'
+                                                        +'</center>'
+                                                        +'<br>'
+                                                        +'<center>Dèscription de la demande'
+
+                                                            +'<br>'
+                                                            +'<textarea name="" id="" cols="100" rows="2">'
+
+                                                            +'</textarea>'
+                                                        +'</center>'
+                                                    +'</p>'
+                                                +'</div>'
+                                            +'</div>'
+                                        +'</div>'
+
+                                    +'</div>'
+                                    +'<br>'
+                                    +'<center>'
+                                        +'<button class="btn btn-info" type="submit">Envoyer'
+
+                                        +'</button>'
+                                    +'</center>'
+                                +'</div>'
+                            +'</div>'
+                        +'</td>'
+                    +'</tr>'
+                );
+
             }
+
         }
 
         // Sets the map on all markers in the array.
@@ -323,6 +450,39 @@
             markers = [];
         }
 
+
+
+        // Fonction d'initialisation de la carte
+        function search_initMap() {
+            // Créer l'objet "map" et l'insèrer dans l'élément HTML qui a l'ID "map"
+            map = new google.maps.Map(document.getElementById("map"), {
+                // Nous plaçons le centre de la carte avec les coordonnées ci-dessus
+                center: new google.maps.LatLng(lat, lon),
+                // Nous définissons le zoom par défaut
+                zoom: 11,
+                // Nous définissons le type de carte (ici carte routière)
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                // Nous activons les options de contrôle de la carte (plan, satellite...)
+                mapTypeControl: true,
+                // Nous désactivons la roulette de souris
+                scrollwheel: false,
+                mapTypeControlOptions: {
+                    // Cette option sert à définir comment les options se placent
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR
+                },
+                // Activation des options de navigation dans la carte (zoom...)
+                navigationControl: true,
+                navigationControlOptions: {
+                    // Comment ces options doivent-elles s'afficher
+                    style: google.maps.NavigationControlStyle.ZOOM_PAN
+                }
+
+            });
+
+            infoWindow = new google.maps.InfoWindow;
+
+
+        }
 
 
         // Fonction d'initialisation de la carte

@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Professional extends Model
 {
     public $fillable=[
-        'name_company'
+        'img'
+        ,'name_company'
         ,'name_contact'
         ,'status_juridique'
         ,'number_rc'

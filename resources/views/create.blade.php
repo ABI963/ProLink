@@ -79,7 +79,7 @@
 
 
             <div class="col-xl">
-                <form method="POST" action="{{route('create_pro')}}">
+                <form method="POST" action="{{route('create_pro')}}" enctype="multipart/form-data" >
 
                     {{ csrf_field() }}
                     <center>
@@ -101,6 +101,16 @@
                                 </option>
                                 @endforeach
                             </select>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" id="inputGroupFileAddon01">Logo</span>
+                                </div>
+                                <div class="custom-file">
+                                  <input type="file" name="img" class="custom-file-input" id="inputGroupFile01"
+                                    aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">Choisir une image</label>
+                                </div>
+                            </div>
                             <input class="form-control" type="text" name="name_entreprise" placeholder="Nom de l'entreprise">
                             <input class="form-control" type="text" name="status_juridique" placeholder="Statut juridique">
                             <input class="form-control" type="text" name="numero_rc" placeholder="Numéros RC">
